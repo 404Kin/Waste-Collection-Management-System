@@ -13,15 +13,14 @@ import Tracking from "./pages/Tracking";
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/Waste-Collection-Management-System">
         <Routes>
-          {/* Public Routes - সবাই দেখতে পারবে */}
+          
           <Route path="/" element={<Home />} />
           <Route path="/recycling-centers" element={<RecyclingCenters />} />
           <Route path="/earn-money" element={<EarnMoney />} />
           <Route path="/contact" element={<Contact />} />
           
-          {/* Protected Routes - শুধু লগইন করা ইউজার দেখতে পারবে */}
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <Dashboard />
@@ -40,7 +39,6 @@ function App() {
             </ProtectedRoute>
           } />
           
-          {/* ✅ Tracking Route - এখানে যোগ করুন */}
           <Route path="/tracking" element={
             <ProtectedRoute>
               <Tracking />
