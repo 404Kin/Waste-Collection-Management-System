@@ -21,7 +21,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// ✅ Auth Functions
+
 export const registerUser = async (email, password, name, phone) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -30,7 +30,7 @@ export const registerUser = async (email, password, name, phone) => {
       phoneNumber: phone
     });
     
-    // Save to MongoDB
+    
     await saveUserToMongoDB(userCredential.user);
     
     return { success: true, user: userCredential.user };
@@ -57,8 +57,9 @@ export const logoutUser = async () => {
   }
 };
 
-// ✅ MongoDB API Functions
-const API_URL = 'http://localhost:5000/api';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 
 export const saveUserToMongoDB = async (user) => {
   try {
@@ -125,5 +126,5 @@ export const getRecyclingCenters = async () => {
   }
 };
 
-// ✅ Export auth
+
 export { auth, onAuthStateChanged };
