@@ -8,11 +8,14 @@ connectDB();
 
 const app = express();
 
-// Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:5176', 'http://localhost:5177', 'http://localhost:5178','https://404kin.github.io'],
+  origin: [
+    process.env.FRONTEND_URL || 'http://localhost:5173',
+    'https://404kin.github.io'
+  ],
   credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
